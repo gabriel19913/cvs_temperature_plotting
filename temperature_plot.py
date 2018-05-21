@@ -23,9 +23,11 @@ def subplot_temp(filename1, filename2, unit):
     if unit.title() == 'C':
         dates1, highs1, lows1 = csv_temperature.convert_temperature(filename1)
         dates2, highs2, lows2 = csv_temperature.convert_temperature(filename2)
+        limy = (-13, 50)
     if unit.title() == 'F':
         dates1, highs1, lows1 = csv_temperature.get_highs_lows(filename1)
         dates2, highs2, lows2 = csv_temperature.get_highs_lows(filename2)
+        limy = (10, 120)
     fig = plt.figure(dpi=128, figsize=(10, 6))
 
     ax1 = plt.subplot(211)
@@ -38,6 +40,7 @@ def subplot_temp(filename1, filename2, unit):
     plt.ylabel('Temperature (°{})'.format(unit.title()), fontsize=12)
     plt.tick_params(axis='both', labelsize=10)
     plt.xlim(dates1[0], dates1[-1])
+    plt.ylim(limy)
     plt.grid()
 
     ax2 = plt.subplot(212, sharex=ax1)
@@ -50,5 +53,7 @@ def subplot_temp(filename1, filename2, unit):
     plt.ylabel('Temperature (°{})'.format(unit.title()), fontsize=12)
     plt.tick_params(axis='both', labelsize=10)
     plt.xlim(dates2[0], dates2[-1])
+    plt.ylim(limy)
     plt.grid()
+
     plt.show()
