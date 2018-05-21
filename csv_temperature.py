@@ -5,7 +5,6 @@ from datetime import datetime
 
 def get_highs_lows(filename):
     # Getting the max temperature of the file
-    # filename = 'death_valley_2014.csv'
     with open(filename) as f:
         reader = csv.reader(f)
         header_row = next(reader)
